@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+// import 'package:unilearn/resources/resources.dart';
 // import 'package:unilearn/features/main_screens/lessons_screen/my_courses/course_lessons/data/lesson.dart';
 import 'package:unilearn/routes/app_routes.dart';
 import 'package:unilearn/settings/settings.dart';
@@ -33,43 +34,52 @@ class CustomCard extends StatelessWidget {
         valueListenable: globalSliderNotifier,
         builder: (context, value, child) {
           return Container(
-            height: 65,
-            width: double.infinity,
+            // height: 20,
+            // width: double.infinity,
             decoration: containerStyle(),
             child: Stack(
               alignment: AlignmentDirectional.center,
               children: [
-                Row(
+                Column(
                   children: [
                     const SizedBox(
-                      width: 25,
+                      height: 10,
                     ),
-                    Text(
-                      '${data.id}',
-                      style: GoogleFonts.nunito(
-                        fontSize: value,
+                    SizedBox(
+                      width: 110,
+                      child: Image(
+                        image: AssetImage(data.icon),
                       ),
                     ),
+                    // Text(
+                    //   '${data.id}',
+                    //   style: GoogleFonts.nunito(
+                    //     fontSize: value,
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   width: 20,
+                    // ),
                     const SizedBox(
-                      width: 20,
+                      height: 5,
                     ),
                     Expanded(
                       child: Text(
                         data.title,
                         style: GoogleFonts.nunito(
-                            fontSize: value -2, fontWeight: FontWeight.w600),
+                            fontSize: value, fontWeight: FontWeight.w600),
                       ),
                     ),
-                    Text(
-                      '${data.percent} %',
-                      style: GoogleFonts.nunito(
-                        fontSize: value,
-                        color: color,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    )
+                    // Text(
+                    //   '${data.percent} %',
+                    //   style: GoogleFonts.nunito(
+                    //     fontSize: value,
+                    //     color: color,
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   width: 20,
+                    // )
                   ],
                 ),
                 Material(

@@ -9,7 +9,7 @@ import 'package:unilearn/features/main_screens/lessons_screen/my_courses/course_
 import 'package:unilearn/features/main_screens/lessons_screen/my_courses/my_courses_screen.dart';
 import 'package:unilearn/features/main_screens/main_screens.dart';
 import 'package:unilearn/features/welcome_screen/settings_screens/color_scheme/color_scheme.dart';
-import 'package:unilearn/features/welcome_screen/settings_screens/color_scheme/color_scheme_about/color_scheme_about.dart';
+import 'package:unilearn/features/welcome_screen/settings_screens/color_scheme/color_scheme_about/color_scheme_more_details.dart';
 import 'package:unilearn/features/welcome_screen/settings_screens/fontsize_settings_screen.dart';
 import 'package:unilearn/features/welcome_screen/settings_screens/mini_settings_screen.dart';
 import 'package:unilearn/features/welcome_screen/start_screen.dart';
@@ -19,7 +19,7 @@ class AppRoutes {
   static const String startScreen = '/start_screen';
   static const String welcomeScreen = '/start_screen/welcome_screen';
   static const String colorScheme = '/start_screen/welcome_screen/color_scheme';
-  static const String colorSchemedAbout = '/start_screen/welcome_screen/color_scheme/color_scheme_about';
+  static const String colorSchemedMoreDetails = '/start_screen/welcome_screen/color_scheme/color_scheme_about';
   static const String fontSizeSettingsScreen =
       '/start_screen/welcome_screen/color_scheme/fontsize_settings_screen';
   static const String miniSettingsScreen =
@@ -43,7 +43,7 @@ class AppRoutes {
     welcomeScreen: (context) => const WelcomeScreen(),
     fontSizeSettingsScreen: (context) => const FontSizeSettingsScreen(),
     colorScheme: (context) => const ColorSchemeForColorBlindPeople(),
-    colorSchemedAbout: (context) => const ColorSchemeAbout(),
+    colorSchemedMoreDetails: (context) => const ColorSchemeAbout(),
     miniSettingsScreen: (context) => const MiniSettingsScreen(),
     registrationScreen: (context) => const RegistrationScreen(),
     authorizationScreen: (context) => const AuthorizationScreen(),

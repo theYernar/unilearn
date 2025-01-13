@@ -10,17 +10,34 @@ class ColorSchemeAbout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       body: Stack(
         children: [
+          // Custom AppBar
           const _CustomAppBar(),
-          SizedBox(
-            width: double.infinity,
+          // Main Content
+          Align(
+            alignment: Alignment.topCenter,
             child: Padding(
-              padding: const EdgeInsets.only(top: 130, left: 16),
-              child: Text(
-                'Бла бла бла',
-                style: GoogleFonts.nunito(
-                  fontSize: 30
+              padding: const EdgeInsets.only(top: 120, left: 16, right: 16),
+              child: Card(
+                elevation: 4,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    'Чтобы эта функция работала корректно, перейдите в настройки телефона:\n\n'
+                    'Настройки → Дополнительные параметры → Специальные возможности → Коррекция цвета.',
+                    style: GoogleFonts.nunito(
+                      fontSize: 20,
+                      color: Colors.black87,
+                      height: 1.5,
+                    ),
+                    textAlign: TextAlign.start,
+                  ),
                 ),
               ),
             ),
@@ -30,6 +47,7 @@ class ColorSchemeAbout extends StatelessWidget {
     );
   }
 }
+
 
 
 class _CustomAppBar extends StatelessWidget {

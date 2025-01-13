@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 BoxDecoration containerStyle() {
   return BoxDecoration(
     color: AppColors.white,
-    borderRadius: BorderRadius.circular(10),
+    borderRadius: BorderRadius.circular(15),
     border: Border.all(color: Colors.black.withOpacity(0.3), width: 0.5),
     boxShadow: [
       BoxShadow(

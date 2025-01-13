@@ -201,7 +201,7 @@ class _TextWidget extends StatelessWidget {
         return Column(
           children: [
             Text(
-              'Выберите нужную параметр',
+              'Выберите нужный параметр',
               style: GoogleFonts.nunito(
                 color: Colors.black,
                 fontSize: value,

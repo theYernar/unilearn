@@ -23,33 +23,41 @@ class MyCoursesScreen extends StatelessWidget {
         builder: (context, value, child) {
           return Scaffold(
               appBar: AppBar(
-                  leading: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(
-                      HugeIcons.strokeRoundedArrowLeft01,
-                      size: 35,
-                    ),
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    HugeIcons.strokeRoundedArrowLeft01,
+                    size: 35,
                   ),
-                  title: Text(
-                    title,
-                    style: CustomTextStyles().TitleTextStyle(value + 4),
-                  )),
-              body: ListView.builder(
-                padding: const EdgeInsets.only(top: 20),
-                itemCount: courses.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    child: CustomCard(
+                ),
+                title: Text(
+                  title,
+                  style: CustomTextStyles().TitleTextStyle(value + 4),
+                )
+              ),
+              body: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: GridView.builder(
+                  padding: const EdgeInsets.only(top: 20),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // Количество столбцов
+                    crossAxisSpacing: 10, // Расстояние между столбцами
+                    mainAxisSpacing: 10, // Расстояние между строками
+                    childAspectRatio: 1.016, // Пропорции элементов (ширина/высота)
+                  ),
+                  itemCount: courses.length,
+                  itemBuilder: (context, index) {
+                    return CustomCard(
                       index: index,
                       data: courses[index],
-                    ),
-                  );
-                },
-              ));
+                    );
+                  },
+                ),
+              )
+
+            );
         });
   }
 }

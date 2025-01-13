@@ -8,6 +8,8 @@ import 'package:unilearn/theme/styles.dart';
 import 'package:vibration/vibration.dart';
 import './data/color_scheme_data.dart';
 
+ValueNotifier<List<ColorSchemeData>> selectedType = ValueNotifier(defaultColor);
+
 class ColorSchemeForColorBlindPeople extends StatelessWidget {
   const ColorSchemeForColorBlindPeople({super.key});
 
@@ -50,9 +52,13 @@ class _ColorsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children:
-          defaultColor.map((data) => _ColorsWidgetBody(data: data)).toList(),
+    return ValueListenableBuilder<List<ColorSchemeData>>(
+      valueListenable: selectedType,
+      builder: (context, value, child) {
+        return Column(
+          children: value.map((data) => _ColorsWidgetBody(data: data)).toList(),
+        );
+      },
     );
   }
 }
@@ -129,8 +135,7 @@ class _NextButton extends StatelessWidget {
                   if (vibration != false) {
                     Vibration.vibrate(duration: 200);
                   }
-                  Navigator.of(context)
-                      .pushNamed(AppRoutes.miniSettingsScreen);
+                  Navigator.of(context).pushNamed(AppRoutes.fontSizeSettingsScreen);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.btnBackground,
@@ -180,7 +185,10 @@ class _CustomAppBar extends StatelessWidget {
                   width: 10,
                 ),
                 Text('Коррекция Цвета',
-                    style: CustomTextStyles().TitleTextStyle(value))
+                    style: CustomTextStyles().TitleTextStyle(value)),
+                const SizedBox(width: 5,),
+                const Text('beta')
+                    
               ],
             ),
           );
@@ -222,6 +230,9 @@ class _SelectColorSchemeState extends State<_SelectColorScheme> {
                 onChanged: (value) {
                   setState(() {
                     isColorCorrectionEnabled = value;
+                    if (isColorCorrectionEnabled != true) {
+                      selectedType.value = defaultColor;
+                    }
                   });
                 },
                 activeColor: AppColors.blue2,
@@ -233,19 +244,19 @@ class _SelectColorSchemeState extends State<_SelectColorScheme> {
             ],
           ),
         ),
+        // -------------------------------------------------------------
 
         // Список вариантов с градиентом
         SizedBox(
           height: 290,
-          child: Expanded(
-            child: ListView(
-              physics: const NeverScrollableScrollPhysics(),
-              children: [
-                buildOptionTile('Дейтераномалия', 'Красно-зеленый'),
-                buildOptionTile('Протаномалия', 'Красно-зеленый'),
-                buildOptionTile('Тританомалия', 'Сине-желтый'),
-              ],
-            ),
+          child: ListView(
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              buildOptionTile(
+                  'Дейтераномалия', 'Красно-зеленый', deuteranomaly),
+              buildOptionTile('Протаномалия', 'Красно-зеленый', protanomaly),
+              buildOptionTile('Тританомалия', 'Сине-желтый', tritanomaly),
+            ],
           ),
         ),
         const SizedBox(
@@ -254,7 +265,8 @@ class _SelectColorSchemeState extends State<_SelectColorScheme> {
         Center(
           child: TextButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(AppRoutes.colorSchemedAbout);
+                Navigator.of(context)
+                    .pushNamed(AppRoutes.colorSchemedMoreDetails);
               },
               child: Text(
                 'Подробнее',
@@ -266,13 +278,14 @@ class _SelectColorSchemeState extends State<_SelectColorScheme> {
   }
 
   // Виджет для построения одной плитки
-  Widget buildOptionTile(String title, String subtitle) {
+  Widget buildOptionTile(String title, String subtitle, var type) {
     bool isSelected = selectedOption == title;
     return GestureDetector(
       onTap: isColorCorrectionEnabled
           ? () {
               setState(() {
                 selectedOption = title;
+                selectedType.value = type;
               });
             }
           : null, // Если выключено - жесты не обрабатываются

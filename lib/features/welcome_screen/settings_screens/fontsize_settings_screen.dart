@@ -31,14 +31,15 @@ class FontSizeSettingsScreen extends StatelessWidget {
           top: 60,
           left: 10,
           child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const HugeIcon(
-                icon: HugeIcons.strokeRoundedArrowLeft01,
-                color: Colors.black,
-                size: 35,
-              )),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const HugeIcon(
+              icon: HugeIcons.strokeRoundedArrowLeft01,
+              color: Colors.black,
+              size: 35,
+            )
+          ),
         ),
       ],
     ));
@@ -150,7 +151,7 @@ class _NextButton extends StatelessWidget {
                     Vibration.vibrate(duration: 200);
                   }
                   Navigator.of(context)
-                      .pushNamed(AppRoutes.colorScheme);
+                      .pushNamed(AppRoutes.miniSettingsScreen);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.btnBackground,
@@ -182,18 +183,41 @@ class _TextWidget extends StatelessWidget {
       valueListenable: globalSliderNotifier,
       builder: (context, value, child) {
         return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Выберите размер шрифта',
-              style: GoogleFonts.nunito(
-                color: Colors.black,
-                fontSize: value,
-                fontWeight: FontWeight.bold,
-              ),
+            Wrap(
+              alignment: WrapAlignment.center,
+              children: [
+                Text(
+                  'Выберите ',
+                  style: GoogleFonts.nunito(
+                    color: Colors.black,
+                    fontSize: value,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'размер',
+                  style: GoogleFonts.nunito(
+                    color: Colors.black,
+                    fontSize: value,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  ' шрифта',
+                  style: GoogleFonts.nunito(
+                    color: Colors.black,
+                    fontSize: value,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 10),
           ],
         );
+
       },
     );
   }
