@@ -1,6 +1,5 @@
 # unilearn
-
-A new Flutter project.
+Figma url: https://www.figma.com/design/kmLZG0R216LuDKMXW7cttf/UniLearn?node-id=0-1&t=HTnt5tRXakPJcM7k-1
 
 ## Getting Started
 
